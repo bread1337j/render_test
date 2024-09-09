@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 public class Main {
     static SplittableRandom rand = new SplittableRandom();
     static byte[][] bytearrpow2 = new byte[255511][3];
-    static byte[] BLACK = new byte[]{(byte)0, (byte)0, (byte)0};
+    static byte[] BLACK = new byte[]{(byte)-128, (byte)-128, (byte)-128};
     public static void addbytearr(byte[] b, int loc){
         bytearrpow2[loc] = b;
     }
@@ -75,7 +75,7 @@ public class Main {
 
             //RandomStuffGo();
             FillScreen(new byte[]{100,100,100});
-            AddLineHorizontal(100,200, 100, BLACK);
+            AddLineHorizontal(100,200, 100+ticks, BLACK);
 
 
             long Time2 = System.nanoTime();
