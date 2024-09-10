@@ -44,6 +44,17 @@ public class Main {
         }
 
     }
+    public static void AddLineVertical(int y1, int y2, int x, byte[] clr){
+        for(int i=y1; i<=y2; i++){
+            addbytearr(clr, i*500+x);
+        }
+    }
+    public static void AddRect(int x1,int y1,int x2,int y2, byte[] clr){
+        for(int j=y1; j<=y2; j++){
+            //System.out.println(j);
+            AddLineHorizontal(x1, x2, j, clr);
+        }
+    }
 
     public static void AddRect(int x1,int y1,int x2,int y2){
 
