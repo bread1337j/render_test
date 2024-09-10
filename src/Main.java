@@ -63,7 +63,7 @@ public class Main {
     }
 
     static int[] TextureMap = new int[] {150, 250, 350, 450, 550, 650, 750, 850, 950, 1050, 1150};
-    static byte[][] Texture = new byte[][] {BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK};
+    static byte[][] Texture = new byte[][] {BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK}; //this is only here for testing purposes
     public static void RenderByteArr(byte[][] arr, Window w){
         w.bytearrpow2 = arr;
         //w.setVisible(false);
