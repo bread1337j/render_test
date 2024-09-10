@@ -75,8 +75,8 @@ public class Main {
 
             //RandomStuffGo();
             FillScreen(new byte[]{100,100,100});
-            AddLineHorizontal(100,200, 100+ticks, BLACK);
-
+            AddLineHorizontal(100,200, ticks%100, BLACK);
+	    TimeUnit.MILLISECONDS.sleep(5);
 
             long Time2 = System.nanoTime();
             long executionTime
@@ -90,10 +90,10 @@ public class Main {
             //System.out.println("Rendered.");
             //TimeUnit.MILLISECONDS.sleep(5);
             //bebra.fr.getContentPane().repaint();
-            //bebra.pn.repaint();
+            bebra.pn.repaint();
             //System.out.println("Displayed.");
             //TimeUnit.SECONDS.sleep(1);
-            SwingUtilities.updateComponentTreeUI(bebra.fr);
+            //SwingUtilities.updateComponentTreeUI(bebra.fr);
             //TimeUnit.SECONDS.sleep(1);
 
 
