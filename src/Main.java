@@ -56,9 +56,14 @@ public class Main {
         }
     }
 
-    public static void AddRect(int x1,int y1,int x2,int y2){
-
+    public static void AddSprite(int[] TextureMap, byte[][] Texture, int x, int y){
+	for(int i=0; i<TextureMap.length; i++){
+		addbytearr(Texture[i], TextureMap[i]+x+y*500);
+	}
     }
+
+    static int[] TextureMap = new int[] {150, 250, 350, 450, 550, 650, 750, 850, 950, 1050, 1150};
+    static byte[][] Texture = new byte[][] {BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK};
     public static void RenderByteArr(byte[][] arr, Window w){
         w.bytearrpow2 = arr;
         //w.setVisible(false);
@@ -86,7 +91,9 @@ public class Main {
 
             //RandomStuffGo();
             FillScreen(new byte[]{100,100,100});
-            AddLineHorizontal(100,200, ticks%100, BLACK);
+            //AddLineHorizontal(100,200, ticks%100, BLACK);
+	    AddSprite(TextureMap, Texture, 100, ticks%100); 
+	    
 	    TimeUnit.MILLISECONDS.sleep(5);
 
             long Time2 = System.nanoTime();
