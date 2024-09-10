@@ -62,8 +62,8 @@ public class Main {
 	}
     }
 
-    static int[] TextureMap = new int[] {150, 250, 350, 450, 550, 650, 750, 850, 950, 1050, 1150};
-    static byte[][] Texture = new byte[][] {BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK}; //this is only here for testing purposes
+    static int[] TextureMap = new int[] {2, 4, 502, 504, 1003, 1503, 2001, 2002, 2003, 2004, 2005, 2503, 3003, 3002, 3004, 3505, 3501, 4005, 4001, 4505, 4501, 5002, 5003, 5004};
+    static byte[][] Texture = new byte[][] {BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK}; //only here for testing purposes, ideally I can make it so that this will read images for sprites later on.
     public static void RenderByteArr(byte[][] arr, Window w){
         w.bytearrpow2 = arr;
         //w.setVisible(false);
@@ -94,7 +94,7 @@ public class Main {
             //AddLineHorizontal(100,200, ticks%100, BLACK);
 	    AddSprite(TextureMap, Texture, 100, ticks%100); 
 	    
-	    TimeUnit.MILLISECONDS.sleep(5);
+	    TimeUnit.MILLISECONDS.sleep(25);
 
             long Time2 = System.nanoTime();
             long executionTime
