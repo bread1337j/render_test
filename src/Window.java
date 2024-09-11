@@ -11,8 +11,8 @@ public class Window extends JPanel {
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         //g2d.drawRect(100, 100, 10, 10);
-        for (int y = 0; y <= 500; y++) {
-            for (int x = 0; x <= 500; x++) {
+        for (int y = 0; y <= 270; y++) {
+            for (int x = 0; x <= 490; x++) {
                 g2d.setColor(GetColorOfLoc(x+y*500));
                 g2d.fillRect(x*4, y*4, 4, 4);
 

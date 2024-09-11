@@ -118,7 +118,7 @@ public class Main {
             //FillScreen(new byte[]{100,100,100});
             //AddLineHorizontal(100,200, ticks%100, BLACK);
 	    //AddSprite(TextureMap, Texture, 100, ticks%100); 
-	    for(int i=0; i<10;i++){ 
+	    for(int i=0; i<100;i++){ 
 	    	bytearrpow2[1000] = new byte[]{(byte)rand.nextInt(100), (byte)rand.nextInt(100), (byte)rand.nextInt(100)};
 	   	AddBytesLoc(new int[]{1000}, rand.nextInt(500), rand.nextInt(500)-2);
 	    }
@@ -136,10 +136,10 @@ public class Main {
             //System.out.println("Rendered.");
             //TimeUnit.MILLISECONDS.sleep(5);
             //bebra.fr.getContentPane().repaint();
-            bebra.pn.repaint();
+            //bebra.pn.repaint();
             //System.out.println("Displayed.");
             //TimeUnit.SECONDS.sleep(1);
-            //SwingUtilities.updateComponentTreeUI(bebra.fr);
+            SwingUtilities.updateComponentTreeUI(bebra.fr);
             //TimeUnit.SECONDS.sleep(1);
 
 
