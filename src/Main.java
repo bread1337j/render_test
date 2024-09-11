@@ -21,7 +21,7 @@ public class Main {
     	for(int j : loc1){
 		byte[] tmp = bytearrpow2[j];
 		bytearrpow2[j+(x%500)+(y%500)*500] = tmp;
-		bytearrpow2[j] = null;
+		bytearrpow2[j] = new byte[3];
 	}
     }
     public static Color GetColorOfLoc(int loc){
@@ -90,8 +90,17 @@ public class Main {
         //bebra.paint(bebra.pn.getGraphics());
         bebra.MakeVisible();
         bebra.repaint();
-        AddLineHorizontal(100,200, 200, new byte[]{00,00,100});
-        int ticks = 0;
+        //AddLineHorizontal(100,200, 200, new byte[]{00,00,100});
+        AddSprite(TextureMap, Texture, 99, 0);
+
+	int[] intlisttemplate = new int[1001];
+	for(int i=0; i<=1000; i++){
+		intlisttemplate[i] = i;
+	}
+	//AddBytesLoc(intlisttemplate, 10, 10);
+
+	
+	int ticks = 0;
         while(true){
             long Time1 = System.nanoTime();
             ticks += 1;
@@ -100,8 +109,10 @@ public class Main {
             //FillScreen(new byte[]{100,100,100});
             //AddLineHorizontal(100,200, ticks%100, BLACK);
 	    //AddSprite(TextureMap, Texture, 100, ticks%100); 
-	    AddBytesLoc(new int[]{100, 101, 102, 103}, 10, 10);
-	    TimeUnit.MILLISECONDS.sleep(25);
+	    
+	    bytearrpow2[1000] = new byte[]{(byte)rand.nextInt(100), (byte)rand.nextInt(100), (byte)rand.nextInt(100)};
+	    AddBytesLoc(new int[]{1000}, rand.nextInt(300), rand.nextInt(300));
+	    //TimeUnit.MILLISECONDS.sleep(25);
 
             long Time2 = System.nanoTime();
             long executionTime
