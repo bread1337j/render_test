@@ -24,6 +24,15 @@ public class Main {
 		bytearrpow2[j] = new byte[3];
 	}
     }
+    public static void SetBytesLoc(int[] loc1, int[] loc2){
+    	for(int i=0; i<loc1.length;i++){
+		bytearrpow2[loc2[i]]=bytearrpow2[loc1[i]];
+		bytearrpow2[loc2[i]]=new byte[3];
+	}
+    }
+
+
+
     public static Color GetColorOfLoc(int loc){
         return(new Color(bytearrpow2[loc][0]+128, bytearrpow2[loc][1]+128, bytearrpow2[loc][2]+128));
     }
