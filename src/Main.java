@@ -118,10 +118,11 @@ public class Main {
             //FillScreen(new byte[]{100,100,100});
             //AddLineHorizontal(100,200, ticks%100, BLACK);
 	    //AddSprite(TextureMap, Texture, 100, ticks%100); 
-	    
-	    bytearrpow2[1000] = new byte[]{(byte)rand.nextInt(100), (byte)rand.nextInt(100), (byte)rand.nextInt(100)};
-	    AddBytesLoc(new int[]{1000}, rand.nextInt(300), rand.nextInt(300));
-	    //TimeUnit.MILLISECONDS.sleep(25);
+	    for(int i=0; i<10;i++){ 
+	    	bytearrpow2[1000] = new byte[]{(byte)rand.nextInt(100), (byte)rand.nextInt(100), (byte)rand.nextInt(100)};
+	   	AddBytesLoc(new int[]{1000}, rand.nextInt(500), rand.nextInt(500)-2);
+	    }
+	    //TimeUnit.MILLISECONDS.sleep(5);
 
             long Time2 = System.nanoTime();
             long executionTime
