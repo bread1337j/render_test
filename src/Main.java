@@ -17,6 +17,13 @@ public class Main {
     public static void addbytearralt(byte b1, byte b2, byte b3, int loc){
         bytearrpow2[loc] = new byte[]{b1, b2, b3};
     }
+    public static void AddBytesLoc(int[] loc1, int x, int y){
+    	for(int j : loc1){
+		byte[] tmp = bytearrpow2[j];
+		bytearrpow2[j+(x%500)+(y%500)*500] = tmp;
+		bytearrpow2[j] = null;
+	}
+    }
     public static Color GetColorOfLoc(int loc){
         return(new Color(bytearrpow2[loc][0]+128, bytearrpow2[loc][1]+128, bytearrpow2[loc][2]+128));
     }
@@ -90,10 +97,10 @@ public class Main {
             ticks += 1;
 
             //RandomStuffGo();
-            FillScreen(new byte[]{100,100,100});
+            //FillScreen(new byte[]{100,100,100});
             //AddLineHorizontal(100,200, ticks%100, BLACK);
-	    AddSprite(TextureMap, Texture, 100, ticks%100); 
-	    
+	    //AddSprite(TextureMap, Texture, 100, ticks%100); 
+	    AddBytesLoc(new int[]{100, 101, 102, 103}, 10, 10);
 	    TimeUnit.MILLISECONDS.sleep(25);
 
             long Time2 = System.nanoTime();
