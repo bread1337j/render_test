@@ -78,7 +78,7 @@ public class Main {
 	}
     }
 
-    
+
     public static void RenderByteArr(byte[][] arr, Window w){
         w.bytearrpow2 = arr;
         //w.setVisible(false);
@@ -101,7 +101,7 @@ public class Main {
         bebra.repaint();
         //AddLineHorizontal(100,200, 200, new byte[]{00,00,100});
         //AddSprite(TextureMap, Texture, 99, 0);
-        
+
         Sprite sigma = new Sprite();
         sigma.TextureMap = TextureMap;
         sigma.Texture = Texture;
@@ -116,23 +116,25 @@ public class Main {
 
     	//AddBytesLoc(intlisttemplate, 10, 10);
 
-    	
+
     	int ticks = 0;
         while(true){
-            long Time1 = System.nanoTime();
-            ticks += 1;
+             long Time1 = System.nanoTime();
+             ticks += 1;
 
             //RandomStuffGo();
             //FillScreen(new byte[]{100,100,100});
             //AddLineHorizontal(100,200, ticks%100, BLACK);
-	    //AddSprite(TextureMap, Texture, 100, ticks%100); 
-	    //for(int i=0; i<100;i++){ 
+	    //AddSprite(TextureMap, Texture, 100, ticks%100);
+	    //for(int i=0; i<100;i++){
 	    //	bytearrpow2[1000] = new byte[]{(byte)rand.nextInt(100), (byte)rand.nextInt(100), (byte)rand.nextInt(100)};
 	   	//AddBytesLoc(new int[]{1000}, rand.nextInt(500), rand.nextInt(500)-2);
 	    //}
 	    //SetBytesLoc(intlisttemplate, zerointlist);
-	       sigma.Draw(bebra);
-	    //TimeUnit.MILLISECONDS.sleep(5);
+	          sigma.Draw(bebra);
+            sigma.SetupSizes();
+	          sigma.Move(2, 0, bebra);
+
 
             long Time2 = System.nanoTime();
             long executionTime
@@ -158,7 +160,7 @@ public class Main {
                     = (Time3 - Time2) / 100;
             System.out.println("Rendering takes "
                     + executionTime2 + "t" + " | " + 10000000/executionTime2 + " FPS");
-
+            TimeUnit.MILLISECONDS.sleep(25);
             //TimeUnit.SECONDS.sleep(1);
             //bebra.repaint();
         }
