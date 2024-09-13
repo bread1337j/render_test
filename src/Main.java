@@ -136,10 +136,10 @@ public class Main {
             //System.out.println("Rendered.");
             //TimeUnit.MILLISECONDS.sleep(5);
             //bebra.fr.getContentPane().repaint();
-            //bebra.pn.repaint();
+            bebra.pn.repaint();
             //System.out.println("Displayed.");
             //TimeUnit.SECONDS.sleep(1);
-            SwingUtilities.updateComponentTreeUI(bebra.fr);
+            //SwingUtilities.updateComponentTreeUI(bebra.fr);
             //TimeUnit.SECONDS.sleep(1);
 
 
