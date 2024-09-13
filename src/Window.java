@@ -15,26 +15,29 @@ public class Window extends JPanel {
         //g2d.drawRect(100, 100, 10, 10);
 	//BufferedImage b = new BufferedImage(490, 270, 3);
         for (int y = 0; y <= 270; y++) {
-            for (int x = 0; x <= 490; x++) {
+            
+	    for (int x = 0; x <= 490; x++) {
+		int loc = x + y * 500;
                 //b.setRGB(0, 0, 40, 40, makeRGB(),0, 490);
-                if((bytearrpow2[x+y*500][0] == bytearrpow2buffer[x+y*500][0])){
-			g2d.setColor(GetColorOfLoc(x+y*500));
-			g2d.fillRect(x*4, y*4, 4, 4);
+                if((bytearrpow2[loc] != SampleArray)){
+			//System.out.println("b");
+		g2d.setColor(GetColorOfLoc(loc));
+		g2d.fillRect(x*4, y*4, 4, 4);
 		}
 		
             }
 
             //System.out.println(y);
         }
-	bytearrpow2buffer = bytearrpow2;
+	//bytearrpow2buffer = bytearrpow2.clone();
         //System.out.println("Render complete");
 	//g2d.drawImage(b, 0, 0, this);
     }};
-    public int[] makeRGB(){
-    	int[] rgb = new int[270*490];
-	Arrays.fill(rgb, 255);
-	return rgb;
-    }
+    //public int[] makeRGB(){
+  //  	int[] rgb = new int[270*490];
+//	Arrays.fill(rgb, 255);
+//	return rgb;
+    //}
     JFrame fr = new JFrame() //{@Override
     //public void paint(Graphics g) {
     //    Graphics2D g2d = (Graphics2D) g;
@@ -53,7 +56,7 @@ public class Window extends JPanel {
     ;
     
     static byte[][] bytearrpow2 = new byte[250001][3];
-    static byte[][] bytearrpow2buffer = new byte[250001][3];
+    //static byte[][] bytearrpow2buffer = new byte[250001][3];
     public void MakeWindow() {
         fr.setSize(600,600);
         fr.setDefaultCloseOperation(3);
