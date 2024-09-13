@@ -87,10 +87,38 @@ public class Main {
     }
     static int[] TextureMap = new int[] {2, 4, 502, 504, 1003, 1503, 2001, 2002, 2003, 2004, 2005, 2503, 3003, 3002, 3004, 3505, 3501, 4005, 4001, 4505, 4501, 5002, 5003, 5004};
         static byte[][] Texture = new byte[][] {BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK}; //only here for testing purposes, ideally I can make it so that this will read images for sprites later on.
+    
+
+
+
+    
+     
+
+
+
+
+
     public static void main(String[] args) throws InterruptedException {
         Window bebra = new Window();
         bebra.MakeWindow();
+        final Runnable doRender = new Runnable() {
+         public void run() {
+             bebra.pn.repaint();
+         }
+         };
 
+         Thread RenderThread = new Thread() {
+             public void run() {
+                 try {
+                     SwingUtilities.invokeAndWait(doRender);
+                 }
+                 catch (Exception e) {
+                     e.printStackTrace();
+                 }
+                 System.out.println("Finished on " + Thread.currentThread());
+             }
+         };
+         RenderThread.start();
         //System.out.println(GetColorOfLoc(1));
         //RandomStuffGo();
         System.out.println("a");
@@ -138,9 +166,9 @@ public class Main {
 
             long Time2 = System.nanoTime();
             long executionTime
-                    = (Time2 - Time1) / 1000;
+                    = (Time2 - Time1);
             System.out.print(ticks + " | Generating takes "
-                    + executionTime + "ns" + " | ");
+                    + executionTime + "t" + " | ");
 
 
 
@@ -149,9 +177,18 @@ public class Main {
             //TimeUnit.MILLISECONDS.sleep(5);
             //bebra.fr.getContentPane().repaint();
             //bebra.pn.repaint();
+	    //SwingUtilities.invokeLater(bebra.pn.repaint());
+            boolean rendering = true;
+            while (rendering) {
+                if(RenderThread.getState().equals(Thread.State.NEW) || RenderThread.getState().equals(Thread.State.WAITING)){
+                   RenderThread.run();
+                   rendering = false;
+                }
+                TimeUnit.MILLISECONDS.sleep(10);
+            }
             //System.out.println("Displayed.");
             //TimeUnit.SECONDS.sleep(1);
-            SwingUtilities.updateComponentTreeUI(bebra.fr);
+            //SwingUtilities.updateComponentTreeUI(bebra.fr);
             //TimeUnit.SECONDS.sleep(1);
 
 
