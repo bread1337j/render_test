@@ -38,8 +38,6 @@ public class Main {
     }
     public static void RandomStuffGo(){
         for(int i=0; i<250001; i++){
-            //int randint = (byte)rand.nextInt(127);
-            //addbytearralt((byte) (randint+20),(byte) (randint-20),(byte) randint,i);
             addbytearralt((byte)rand.nextInt(127),(byte) (byte)rand.nextInt(127),(byte) (byte)rand.nextInt(127),i);
         }
     }
@@ -48,14 +46,12 @@ public class Main {
             for (int x = 0; x <= 500; x++) {
                 addbytearr(clr, x+y*500);
             }
-            //System.out.println(y);
         }
     }
     public static void AddLineHorizontal(int x1, int x2, int y, byte[] clr){
         int h = y * 500;
         for(int i=x1; i<=x2; i++){
             addbytearr(clr, h+i);
-            //System.out.println("x coords: " + i + " y coords: " + h + " || loc: " + (i + h));
 
         }
 
@@ -79,11 +75,8 @@ public class Main {
     }
 
 
-    public static void RenderByteArr(byte[][] arr, Window w){
+    public static void SyncByteArr(byte[][] arr, Window w){
         w.bytearrpow2 = arr;
-        //w.setVisible(false);
-        //w.setVisible(true);
-        //SwingUtilities.updateComponentTreeUI(w.fr);
     }
     static int[] TextureMap = new int[] {2, 4, 502, 504, 1003, 1503, 2001, 2002, 2003, 2004, 2005, 2503, 3003, 3002, 3004, 3505, 3501, 4005, 4001, 4505, 4501, 5002, 5003, 5004};
         static byte[][] Texture = new byte[][] {BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK}; //only here for testing purposes, ideally I can make it so that this will read images for sprites later on.
@@ -119,16 +112,12 @@ public class Main {
              }
          };
          RenderThread.start();
-        //System.out.println(GetColorOfLoc(1));
-        //RandomStuffGo();
-        System.out.println("a");
-        RenderByteArr(bytearrpow2, bebra);
-        System.out.println("a");
-        //bebra.paint(bebra.pn.getGraphics());
+
+        SyncByteArr(bytearrpow2, bebra);
+
         bebra.MakeVisible();
         bebra.repaint();
-        //AddLineHorizontal(100,200, 200, new byte[]{00,00,100});
-        //AddSprite(TextureMap, Texture, 99, 0);
+
 
         Sprite sigma = new Sprite();
         sigma.TextureMap = TextureMap;
@@ -142,28 +131,27 @@ public class Main {
     		zerointlist[i]=0;
     	}
 
-    	//AddBytesLoc(intlisttemplate, 10, 10);
 
 
     	int ticks = 0;
         while(true){
-             long Time1 = System.nanoTime();
-             ticks += 1;
+            long Time1 = System.nanoTime();
+            ticks += 1;
 
             //RandomStuffGo();
-            //FillScreen(new byte[]{100,100,100});
-            //AddLineHorizontal(100,200, ticks%100, BLACK);
-	    //AddSprite(TextureMap, Texture, 100, ticks%100);
-	    //for(int i=0; i<100;i++){
-	    //	bytearrpow2[1000] = new byte[]{(byte)rand.nextInt(100), (byte)rand.nextInt(100), (byte)rand.nextInt(100)};
-	   	//AddBytesLoc(new int[]{1000}, rand.nextInt(500), rand.nextInt(500)-2);
-	    //}
-	    //SetBytesLoc(intlisttemplate, zerointlist);
-	          sigma.Draw(bebra);
+
+
             sigma.SetupSizes();
-	          sigma.Move(2, 0, bebra);
+            sigma.Move(2, 0, bebra);
 
 
+
+
+
+            SyncByteArr(bytearrpow2, bebra);
+
+
+            sigma.Draw(bebra);
             long Time2 = System.nanoTime();
             long executionTime
                     = (Time2 - Time1);
@@ -172,25 +160,10 @@ public class Main {
 
 
 
-            RenderByteArr(bytearrpow2, bebra);
-            //System.out.println("Rendered.");
-            //TimeUnit.MILLISECONDS.sleep(5);
-            //bebra.fr.getContentPane().repaint();
-            //bebra.pn.repaint();
-	    //SwingUtilities.invokeLater(bebra.pn.repaint());
-            //boolean rendering = true;
-            //while (rendering) {
-            //    if(RenderThread.getState().equals(Thread.State.NEW) || RenderThread.getState().equals(Thread.State.WAITING)){
-            //       RenderThread.run();
-            //       rendering = false;
-            //    }
-            //    TimeUnit.MILLISECONDS.sleep(10);
-            //}
-	    RenderThread.run();
-            //System.out.println("Displayed.");
-            //TimeUnit.SECONDS.sleep(1);
-            //SwingUtilities.updateComponentTreeUI(bebra.fr);
-            //TimeUnit.SECONDS.sleep(1);
+
+
+	        RenderThread.run();
+
 
 
             long Time3 = System.nanoTime();
@@ -198,10 +171,7 @@ public class Main {
                     = (Time3 - Time2) / 100;
             System.out.println("Rendering takes "
                     + executionTime2 + "t" + " | " + 10000000/executionTime2 + " FPS");
-            TimeUnit.MILLISECONDS.sleep(25);
-            //TimeUnit.SECONDS.sleep(1);
-            //bebra.repaint();
+
         }
-        //bebra.setVisible(true);
-    }//0110 0100 & 0011 1001 -> 0010 0000 -> 32
+    }
 }
