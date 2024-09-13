@@ -24,28 +24,22 @@ public class Sprite{
         w.bytearrpow2[loc] = b;
     }
     public void Move(int xshift, int yshift, Window w){
-//				if (x+(sizex*3)+(xshift)<=490&&(y+sizey*3+yshift)<=272){
-//					for(int j : TextureMap){
-//						w.bytearrpow2[j+x+y*500] = new byte[3];
-//					}
-//			    for(int j=0;j<TextureMap.length;j++){
-//						w.bytearrpow2[TextureMap[j]+x+xshift+(y+yshift)*500] = Texture[j];
-//
-//					}
-//					x+=xshift;
-//					y+=yshift;
-//	    }
-//			else{
-//				for(int j : TextureMap){
-//					w.bytearrpow2[j+x+y*500] = new byte[3];
-//				}
-//				for(int j=0;j<TextureMap.length;j++){
-//					w.bytearrpow2[TextureMap[j]+x-(1)+y*500-(500)] = Texture[j];
-//				}
-//				x-=xshift;
-//				y-=yshift;
-//			}
-//		}
+    	try{
+			for(int j : TextureMap){
+				w.bytearrpow2[j+x+y*500] = new byte[3];
+			}
+		    for(int j=0;j<TextureMap.length;j++){
+					w.bytearrpow2[TextureMap[j]+x+xshift+(y+yshift)*500] = Texture[j];
+
+				}
+				x+=xshift;
+				y+=yshift;
+		    }
+		catch (Exception e) {
+			System.out.println("Caught exception" + e);
+		}
+	}
+//			
 	    public void Draw(Window w){
 		    for(int i=0; i<TextureMap.length; i++){
 					addbytearr(Texture[i], TextureMap[i]+x+y*500, w);
