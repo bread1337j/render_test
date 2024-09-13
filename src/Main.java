@@ -78,19 +78,47 @@ public class Main {
 	}
     }
 
-    static int[] TextureMap = new int[] {2, 4, 502, 504, 1003, 1503, 2001, 2002, 2003, 2004, 2005, 2503, 3003, 3002, 3004, 3505, 3501, 4005, 4001, 4505, 4501, 5002, 5003, 5004};
-    static byte[][] Texture = new byte[][] {BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK}; //only here for testing purposes, ideally I can make it so that this will read images for sprites later on.
+
     public static void RenderByteArr(byte[][] arr, Window w){
         w.bytearrpow2 = arr;
         //w.setVisible(false);
         //w.setVisible(true);
         //SwingUtilities.updateComponentTreeUI(w.fr);
     }
+    static int[] TextureMap = new int[] {2, 4, 502, 504, 1003, 1503, 2001, 2002, 2003, 2004, 2005, 2503, 3003, 3002, 3004, 3505, 3501, 4005, 4001, 4505, 4501, 5002, 5003, 5004};
+        static byte[][] Texture = new byte[][] {BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK, BLACK}; //only here for testing purposes, ideally I can make it so that this will read images for sprites later on.
+    
+
+
+
+    
+     
+
+
+
+
 
     public static void main(String[] args) throws InterruptedException {
         Window bebra = new Window();
         bebra.MakeWindow();
+        final Runnable doRender = new Runnable() {
+         public void run() {
+             bebra.pn.repaint();
+         }
+         };
 
+         Thread RenderThread = new Thread() {
+             public void run() {
+                 try {
+                     SwingUtilities.invokeAndWait(doRender);
+                 }
+                 catch (Exception e) {
+                     e.printStackTrace();
+                 }
+                 System.out.print("Finished on " + Thread.currentThread() + " | ");
+             }
+         };
+         RenderThread.start();
         //System.out.println(GetColorOfLoc(1));
         //RandomStuffGo();
         System.out.println("a");
@@ -100,35 +128,47 @@ public class Main {
         bebra.MakeVisible();
         bebra.repaint();
         //AddLineHorizontal(100,200, 200, new byte[]{00,00,100});
-        AddSprite(TextureMap, Texture, 99, 0);
+        //AddSprite(TextureMap, Texture, 99, 0);
 
-	int[] intlisttemplate = new int[1001];
-	for(int i=0; i<=1000; i++){
-		intlisttemplate[i] = i;
-	}
-	//AddBytesLoc(intlisttemplate, 10, 10);
+        Sprite sigma = new Sprite();
+        sigma.TextureMap = TextureMap;
+        sigma.Texture = Texture;
+    	int[] intlisttemplate = new int[1001];
+    	for(int i=0; i<=1000; i++){
+    		intlisttemplate[i] = i;
+    	}
+    	int[] zerointlist = new int[1001];
+    	for(int i=0; i<= 1000; i++){
+    		zerointlist[i]=0;
+    	}
 
-	
-	int ticks = 0;
+    	//AddBytesLoc(intlisttemplate, 10, 10);
+
+
+    	int ticks = 0;
         while(true){
-            long Time1 = System.nanoTime();
-            ticks += 1;
+             long Time1 = System.nanoTime();
+             ticks += 1;
 
             //RandomStuffGo();
             //FillScreen(new byte[]{100,100,100});
             //AddLineHorizontal(100,200, ticks%100, BLACK);
-	    //AddSprite(TextureMap, Texture, 100, ticks%100); 
-	    for(int i=0; i<100;i++){ 
-	    	bytearrpow2[1000] = new byte[]{(byte)rand.nextInt(100), (byte)rand.nextInt(100), (byte)rand.nextInt(100)};
-	   	AddBytesLoc(new int[]{1000}, rand.nextInt(500), rand.nextInt(500)-2);
-	    }
-	    //TimeUnit.MILLISECONDS.sleep(5);
+	    //AddSprite(TextureMap, Texture, 100, ticks%100);
+	    //for(int i=0; i<100;i++){
+	    //	bytearrpow2[1000] = new byte[]{(byte)rand.nextInt(100), (byte)rand.nextInt(100), (byte)rand.nextInt(100)};
+	   	//AddBytesLoc(new int[]{1000}, rand.nextInt(500), rand.nextInt(500)-2);
+	    //}
+	    //SetBytesLoc(intlisttemplate, zerointlist);
+	          sigma.Draw(bebra);
+            sigma.SetupSizes();
+	          sigma.Move(2, 0, bebra);
+
 
             long Time2 = System.nanoTime();
             long executionTime
-                    = (Time2 - Time1) / 1000;
+                    = (Time2 - Time1);
             System.out.print(ticks + " | Generating takes "
-                    + executionTime + "ns" + " | ");
+                    + executionTime + "t" + " | ");
 
 
 
@@ -136,7 +176,17 @@ public class Main {
             //System.out.println("Rendered.");
             //TimeUnit.MILLISECONDS.sleep(5);
             //bebra.fr.getContentPane().repaint();
-            bebra.pn.repaint();
+            //bebra.pn.repaint();
+	    //SwingUtilities.invokeLater(bebra.pn.repaint());
+            //boolean rendering = true;
+            //while (rendering) {
+            //    if(RenderThread.getState().equals(Thread.State.NEW) || RenderThread.getState().equals(Thread.State.WAITING)){
+            //       RenderThread.run();
+            //       rendering = false;
+            //    }
+            //    TimeUnit.MILLISECONDS.sleep(10);
+            //}
+	    RenderThread.run();
             //System.out.println("Displayed.");
             //TimeUnit.SECONDS.sleep(1);
             //SwingUtilities.updateComponentTreeUI(bebra.fr);
@@ -148,7 +198,7 @@ public class Main {
                     = (Time3 - Time2) / 100;
             System.out.println("Rendering takes "
                     + executionTime2 + "t" + " | " + 10000000/executionTime2 + " FPS");
-
+            TimeUnit.MILLISECONDS.sleep(25);
             //TimeUnit.SECONDS.sleep(1);
             //bebra.repaint();
         }
