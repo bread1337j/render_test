@@ -17,14 +17,17 @@ public class Window extends JPanel {
         for (int y = 0; y <= 270; y++) {
             for (int x = 0; x <= 490; x++) {
                 //b.setRGB(0, 0, 40, 40, makeRGB(),0, 490);
-                if((bytearrpow2[x+y*500] != SampleArray)){
+                if((bytearrpow2[x+y*500][0] == bytearrpow2buffer[x+y*500][0])){
 			g2d.setColor(GetColorOfLoc(x+y*500));
 			g2d.fillRect(x*4, y*4, 4, 4);
 		}
+		
             }
+
             //System.out.println(y);
         }
-        System.out.println("Render complete");
+	bytearrpow2buffer = bytearrpow2;
+        //System.out.println("Render complete");
 	//g2d.drawImage(b, 0, 0, this);
     }};
     public int[] makeRGB(){
@@ -50,6 +53,7 @@ public class Window extends JPanel {
     ;
     
     static byte[][] bytearrpow2 = new byte[250001][3];
+    static byte[][] bytearrpow2buffer = new byte[250001][3];
     public void MakeWindow() {
         fr.setSize(600,600);
         fr.setDefaultCloseOperation(3);

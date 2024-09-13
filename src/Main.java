@@ -115,7 +115,7 @@ public class Main {
                  catch (Exception e) {
                      e.printStackTrace();
                  }
-                 System.out.println("Finished on " + Thread.currentThread());
+                 System.out.print("Finished on " + Thread.currentThread() + " | ");
              }
          };
          RenderThread.start();
@@ -178,14 +178,15 @@ public class Main {
             //bebra.fr.getContentPane().repaint();
             //bebra.pn.repaint();
 	    //SwingUtilities.invokeLater(bebra.pn.repaint());
-            boolean rendering = true;
-            while (rendering) {
-                if(RenderThread.getState().equals(Thread.State.NEW) || RenderThread.getState().equals(Thread.State.WAITING)){
-                   RenderThread.run();
-                   rendering = false;
-                }
-                TimeUnit.MILLISECONDS.sleep(10);
-            }
+            //boolean rendering = true;
+            //while (rendering) {
+            //    if(RenderThread.getState().equals(Thread.State.NEW) || RenderThread.getState().equals(Thread.State.WAITING)){
+            //       RenderThread.run();
+            //       rendering = false;
+            //    }
+            //    TimeUnit.MILLISECONDS.sleep(10);
+            //}
+	    RenderThread.run();
             //System.out.println("Displayed.");
             //TimeUnit.SECONDS.sleep(1);
             //SwingUtilities.updateComponentTreeUI(bebra.fr);
