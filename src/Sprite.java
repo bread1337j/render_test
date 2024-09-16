@@ -39,6 +39,21 @@ public class Sprite{
 			System.out.println("Caught exception" + e);
 		}
 	}
+	public void setPos(int xcord, int ycord, Window w){
+    	try{
+		
+		for(int j: TextureMap){
+			w.bytearrpow2[j+x+y*500]=new byte[3];
+		}/*
+		for(int j=0; j<TextureMap.length;j++){
+			w.bytearrpow2[TextureMap[j]+x
+		} */
+		x = xcord;
+		y = ycord;
+	} catch (Exception e) {
+		System.out.println("Caught exception" + e);
+	}
+    }
 //			
 	    public void Draw(Window w){
 		    for(int i=0; i<TextureMap.length; i++){

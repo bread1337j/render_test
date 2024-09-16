@@ -142,27 +142,26 @@ public class Main {
 
 
             sigma.SetupSizes();
-            sigma.Move(2, 0, bebra);
-
+            //sigma.Move(2, 0, bebra);
+	    sigma.setPos(rand.nextInt(40), rand.nextInt(25), bebra);
 
 
 
 
             SyncByteArr(bytearrpow2, bebra);
 
-
+	    //Make sure to draw sprites after the syncbytearr
             sigma.Draw(bebra);
-            long Time2 = System.nanoTime();
+            
+	    
+	    long Time2 = System.nanoTime();
             long executionTime
                     = (Time2 - Time1);
             System.out.print(ticks + " | Generating takes "
                     + executionTime + "t" + " | ");
 
 
-
-
-
-	        RenderThread.run();
+	    RenderThread.run();
 
 
 
