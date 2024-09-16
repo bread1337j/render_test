@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.Random;
 import java.util.SplittableRandom;
 import java.util.concurrent.TimeUnit;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Main {
     static SplittableRandom rand = new SplittableRandom();
@@ -90,10 +92,37 @@ public class Main {
 
 
 
-
+    public static void DoKeyPress1(Sprite s, int x, int y, Window w){
+        s.Move(x, y, w);
+    }
     public static void main(String[] args) throws InterruptedException {
+        Sprite sigma = new Sprite();
+
         Window bebra = new Window();
         bebra.MakeWindow();
+        bebra.fr.addKeyListener(new KeyAdapter(){
+            public void keyPressed(KeyEvent e){
+                int vectx = 0;
+                int vecty = 0;
+                int keyCode = e.getKeyCode();
+                if(keyCode == KeyEvent.VK_DOWN){
+                    vecty += 1;
+                }
+                if(keyCode == KeyEvent.VK_UP){
+                    vecty -= 1;
+                }
+                if(keyCode == KeyEvent.VK_RIGHT){
+                    vectx += 1;
+                }
+                if(keyCode == KeyEvent.VK_LEFT){
+                    vectx -= 1;
+                }
+                DoKeyPress1(sigma, vectx, vecty, bebra);
+            }
+
+        });
+
+
         final Runnable doRender = new Runnable() {
          public void run() {
              bebra.pn.repaint();
@@ -119,7 +148,7 @@ public class Main {
         bebra.repaint();
 
 
-        Sprite sigma = new Sprite();
+        
         sigma.TextureMap = TextureMap;
         sigma.Texture = Texture;
     	int[] intlisttemplate = new int[1001];
@@ -143,7 +172,7 @@ public class Main {
 
             sigma.SetupSizes();
             //sigma.Move(2, 0, bebra);
-	    sigma.setPos(rand.nextInt(40), rand.nextInt(25), bebra);
+	    //sigma.setPos(rand.nextInt(40), rand.nextInt(25), bebra);
 
 
 
